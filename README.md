@@ -1,4 +1,3 @@
-- Você tambem pode acessar este projeto no Github Pages basta seguir o link a seguir: https://VitRicci.github.io
 - Ainda estou procurando uma forma de fazer upload do site e deixa-lo totalmente online e fazendo as correções necessárias.
 - Basta baixar e adicionar a sua maquina os arquivos de back-end e front-end.
 - Para executar o programa digite no terminal do proprio compilador os seguintes comandos: "cd back-end" (para entrar no diretorio da pasta para o seguinte comando 
