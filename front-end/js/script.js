@@ -109,5 +109,3 @@ chatForm.addEventListener("submit", async function(e) {
   chatInput.value = '';
   loadMessages();
 });
-
-const client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
