@@ -3,7 +3,7 @@ const uri = process.env.MONGODB_URI;
 
 exports.handler = async function(event, context) {
   console.log("Function getMessages called");
-  const client = new MongoClient(uri);
+  const client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
   try {
     await client.connect();
     console.log("Connected to MongoDB");

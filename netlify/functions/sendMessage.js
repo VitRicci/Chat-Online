@@ -7,7 +7,7 @@ exports.handler = async function(event, context) {
   }
   try {
     const { name, email, message } = JSON.parse(event.body);
-    const client = new MongoClient(uri);
+    const client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
     await client.connect();
     const db = client.db('chat');
     const collection = db.collection('messages');
