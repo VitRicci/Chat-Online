@@ -103,4 +103,22 @@ async function getMessages() {
 }
 
 loginForm.addEventListener("submit", handleLogin)
-chatForm.addEventListener("submit", sendMessage)
+chatForm.addEventListener("submit", async function(e) {
+  e.preventDefault(); // Impede o reload da página
+
+  const input = document.querySelector('.chat__input');
+  const message = input.value.trim();
+  if (!message) return;
+
+  // Chame sua função de envio (ajuste os parâmetros conforme necessário)
+  await sendMessage('SeuNome', 'SeuEmail', message);
+
+  // Atualize a interface (exemplo simples)
+  const messagesDiv = document.querySelector('.chat__messages');
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'message--self';
+  msgDiv.textContent = message;
+  messagesDiv.appendChild(msgDiv);
+
+  input.value = '';
+});
