@@ -18,14 +18,3 @@ exports.handler = async function(event, context) {
     return { statusCode: 200, body: JSON.stringify([]) };
   }
 };
-
-async function getMessages() {
-  const res = await fetch('/.netlify/functions/getMessages');
-  if (!res.ok) return [];
-  const text = await res.text();
-  try {
-    return JSON.parse(text);
-  } catch {
-    return [];
-  }
-}
