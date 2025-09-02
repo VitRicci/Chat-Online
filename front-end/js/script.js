@@ -102,6 +102,7 @@ loginForm.addEventListener("submit", function(event) {
 // Envio de mensagem
 chatForm.addEventListener("submit", async function(e) {
   e.preventDefault();
+  console.log("Form submitted"); // Debug log
   const message = chatInput.value.trim();
   if (!message) return;
   await sendMessage(user.name, user.email, message);

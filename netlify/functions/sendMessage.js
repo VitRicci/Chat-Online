@@ -18,3 +18,15 @@ exports.handler = async function(event, context) {
     return { statusCode: 500, body: 'Database error: ' + err.message };
   }
 };
+
+async function sendMessage(name, email, message) {
+  console.log("Sending:", { name, email, message }); // Debug log
+  const response = await fetch('/.netlify/functions/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, message })
+  });
+  console.log("Response status:", response.status); // Debug log
+  const result = await response.json().catch(() => null);
+  console.log("Response body:", result); // Debug log
+}
