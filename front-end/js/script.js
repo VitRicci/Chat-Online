@@ -102,6 +102,22 @@ async function getMessages() {
   return await res.json();
 }
 
+// Função para buscar e exibir mensagens
+async function loadMessages() {
+  const messagesDiv = document.querySelector('.chat__messages');
+  messagesDiv.innerHTML = ''; // Limpa mensagens antigas
+  const messages = await getMessages(); // Busca do backend
+  messages.reverse().forEach(msg => {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = msg.email === 'SeuEmail' ? 'message--self' : 'message--other';
+    msgDiv.textContent = `${msg.name}: ${msg.message}`;
+    messagesDiv.appendChild(msgDiv);
+  });
+}
+
+// Chame loadMessages periodicamente
+setInterval(loadMessages, 2000); // Atualiza a cada 2 segundos
+
 loginForm.addEventListener("submit", handleLogin)
 chatForm.addEventListener("submit", async function(e) {
   e.preventDefault(); // Impede o reload da página
@@ -121,4 +137,5 @@ chatForm.addEventListener("submit", async function(e) {
   messagesDiv.appendChild(msgDiv);
 
   input.value = '';
+  loadMessages(); // Atualiza após enviar
 });
