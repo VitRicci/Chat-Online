@@ -10,7 +10,7 @@ exports.handler = async function(event, context) {
     const messages = await collection.find().sort({ timestamp: -1 }).limit(50).toArray();
     return { statusCode: 200, body: JSON.stringify(messages) };
   } catch (err) {
-    return { statusCode: 500, body: 'Database error' };
+    return { statusCode: 500, body: JSON.stringify([]) }; // Retorna array vazio em caso de erro
   } finally {
     await client.close();
   }
