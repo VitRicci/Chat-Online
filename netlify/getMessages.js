@@ -1,18 +1,17 @@
-import { MongoClient } from 'mongodb';
-
+const { MongoClient } = require('mongodb');
 const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri);
 
-export default async function handler(req, res) {
+exports.handler = async function(event, context) {
+  const client = new MongoClient(uri);
   try {
     await client.connect();
     const db = client.db('chat');
     const collection = db.collection('messages');
     const messages = await collection.find().sort({ timestamp: -1 }).limit(50).toArray();
-    res.status(200).json(messages);
+    return { statusCode: 200, body: JSON.stringify(messages) };
   } catch (err) {
-    res.status(500).json({ error: 'Database error' });
+    return { statusCode: 500, body: 'Database error' };
   } finally {
     await client.close();
   }
-}
+};

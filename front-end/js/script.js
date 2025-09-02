@@ -89,7 +89,7 @@ const handleLogin = (event) => {
 
 // Enviar mensagem
 async function sendMessage(name, email, message) {
-  await fetch('/api/sendMessage', {
+  await fetch('/.netlify/functions/sendMessage', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, email, message })
@@ -98,7 +98,7 @@ async function sendMessage(name, email, message) {
 
 // Buscar mensagens
 async function getMessages() {
-  const res = await fetch('/api/getMessages');
+  const res = await fetch('/.netlify/functions/getMessages');
   return await res.json();
 }
 
