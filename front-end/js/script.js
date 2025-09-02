@@ -87,21 +87,6 @@ const handleLogin = (event) => {
     websocket.onmessage = processMessage
 }
 
-const sendMessage = (event) => {
-    event.preventDefault()
-
-    const message = {
-        userId: user.id,
-        userName: user.name,
-        userColor: user.color,
-        content: chatInput.value
-    }
-
-    websocket.send(JSON.stringify(message))
-
-    chatInput.value = ""
-}
-
 // Enviar mensagem
 async function sendMessage(name, email, message) {
   await fetch('/api/sendMessage', {
