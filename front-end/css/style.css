@@ -110,17 +110,22 @@ input[type="submit"]:hover{
     justify-content: flex-end;
 }
 
-.chat__form{
+.chat__form {
     background-color: #533e66;
-    padding: 15px  10px 15px 20px;
+    padding: 15px 10px 15px 20px;
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px; /* reduced gap */
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    max-width: 100%; /* add max-width */
+    right: 0; /* ensure it doesn't overflow */
+    box-sizing: border-box; /* include padding in width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .chat__input{
@@ -139,12 +144,14 @@ input[type="submit"]:hover{
     background: none;
     color: white;
     cursor: pointer;
+    z-index: 2;
+    position: relative;
 }
 
-.chat_button > span{
+.chat__button > span {
     height: 100%;
     font-size: 1.8rem;
-    background-color: black;
+
 }
 
 .chat__messages > div{
