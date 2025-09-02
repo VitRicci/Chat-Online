@@ -102,5 +102,20 @@ const sendMessage = (event) => {
     chatInput.value = ""
 }
 
+// Enviar mensagem
+async function sendMessage(name, email, message) {
+  await fetch('/api/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, message })
+  });
+}
+
+// Buscar mensagens
+async function getMessages() {
+  const res = await fetch('/api/getMessages');
+  return await res.json();
+}
+
 loginForm.addEventListener("submit", handleLogin)
 chatForm.addEventListener("submit", sendMessage)
