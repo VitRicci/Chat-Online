@@ -79,6 +79,8 @@ async function loadMessages() {
       chatMessages.appendChild(msgDiv);
     });
     scrollScreen();
+  } else {
+    // Se não for array, não faz nada ou mostra erro
   }
 }
 

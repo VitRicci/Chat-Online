@@ -11,6 +11,7 @@ exports.handler = async function(event, context) {
     await client.close();
     return { statusCode: 200, body: JSON.stringify(messages) };
   } catch (err) {
-    return { statusCode: 500, body: 'Database error: ' + err.message };
+    // Sempre retorna um array vazio em caso de erro
+    return { statusCode: 200, body: JSON.stringify([]) };
   }
 };
