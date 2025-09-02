@@ -8,10 +8,9 @@ exports.handler = async function(event, context) {
     const db = client.db('chat');
     const collection = db.collection('messages');
     const messages = await collection.find().sort({ timestamp: -1 }).limit(50).toArray();
+    await client.close();
     return { statusCode: 200, body: JSON.stringify(messages) };
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify([]) }; // Retorna array vazio em caso de erro
-  } finally {
-    await client.close();
+    return { statusCode: 500, body: 'Database error: ' + err.message };
   }
 };
