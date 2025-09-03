@@ -69,23 +69,24 @@ async function getMessages() {
 
 // Função para buscar e exibir mensagens
 async function loadMessages() {
-  chatMessages.innerHTML = '';
-  const messages = await getMessages();
-  if (Array.isArray(messages)) {
-    messages.reverse().forEach(msg => {
-      const msgDiv = msg.email === user.email
-        ? createMessageSelfElement(msg.message)
-        : createMessageOtherElement(msg.message, msg.name, msg.color || "gray");
-      chatMessages.appendChild(msgDiv);
-    });
-    scrollScreen();
-  } else {
-    // Se não for array, não faz nada ou mostra erro
+  try {
+    const messages = await getMessages();
+    if (Array.isArray(messages)) {
+      chatMessages.innerHTML = '';
+      messages.reverse().forEach(msg => {
+        const msgDiv = msg.email === user.email
+          ? createMessageSelfElement(msg.message)
+          : createMessageOtherElement(msg.message, msg.name, msg.color || "gray");
+        chatMessages.appendChild(msgDiv);
+      });
+    }
+  } catch (err) {
+    console.error("Failed to load messages:", err);
   }
 }
 
-// Atualiza a cada 2 segundos
-setInterval(loadMessages, 2000);
+// Atualiza a cada 3 segundos
+setInterval(loadMessages, 3000);
 
 // Login
 loginForm.addEventListener("submit", function(event) {
