@@ -2,10 +2,6 @@ import { MongoClient } from 'mongodb';
 const uri = process.env.MONGODB_URI;
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.status(405).send('Method Not Allowed');
-    return;
-  }
   try {
     const { name, email, message } = req.body;
     const client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
